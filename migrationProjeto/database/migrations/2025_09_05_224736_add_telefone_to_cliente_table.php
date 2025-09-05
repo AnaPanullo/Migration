@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('enderecos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('cliente_id')->constrained('cliente')->onDelete('cascade');
-            $table->string('logradouro');
-            $table->timestamps();
+        Schema::table('cliente', function (Blueprint $table) {
+            $table->string('codigo')-> unique();
+            $table->string('numero');
+            $table->string('senha');
+
         });
     }
 
@@ -28,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enderecos');
+        Schema::table('cliente', function (Blueprint $table) {
+            //
+        });
     }
 };

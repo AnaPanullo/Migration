@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('enderecos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('cliente_id')->constrained('cliente')->onDelete('cascade');
-            $table->string('logradouro');
-            $table->timestamps();
+        Schema::table('enderecos', function (Blueprint $table) {
+            $table->dropColumn('bairro');
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enderecos');
+        Schema::table('enderecos', function (Blueprint $table) {
+            //
+        });
     }
 };
